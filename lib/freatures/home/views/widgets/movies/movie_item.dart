@@ -4,9 +4,10 @@ import 'package:golcoin_movies/core/views/widgets/image_view.dart';
 import 'package:sizer/sizer.dart';
 
 class MovieItem extends StatelessWidget {
-  const MovieItem({super.key,this.onPressed});
+  const MovieItem({super.key, this.onPressed, this.isSearch = false});
 
   final VoidCallback? onPressed;
+  final bool isSearch;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +25,19 @@ class MovieItem extends StatelessWidget {
                 alignment: AlignmentDirectional.topEnd,
                 children: [
                   SizedBox(
-                    height: 22.h,
-                    width: 35.w,
+                    height: isSearch ? 26.h : 22.h,
+                    width: isSearch ? 42.w : 35.w,
                     child: const ImageView(
                         imageUrl:
                             'https://media.istockphoto.com/id/952063296/photo/conference-room.jpg?s=2048x2048&w=is&k=20&c=Pkze4PuxUP6_GmEycXW0iDKGwYZEu8wlDKM_8fwMp5E='),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Icon(Icons.favorite_sharp,color: Theme.of(context).colorScheme.error,),
+                    child: Icon(
+                      Icons.favorite_sharp,
+                      color: Theme.of(context).colorScheme.error,
+                      size: isSearch ? 35 : null,
+                    ),
                   )
                 ],
               ),
@@ -45,8 +50,10 @@ class MovieItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text('avatar: the movie',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                             fontSize: 11.sp, fontWeight: FontWeight.w500),
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontSize: 11.sp, fontWeight: FontWeight.w500),
                         overflow: TextOverflow.ellipsis),
                     Text('7.056 . Action',
                         style: Theme.of(context)

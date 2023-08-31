@@ -3,13 +3,20 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:golcoin_movies/core/theme/dark_theme.dart';
 import 'package:golcoin_movies/core/theme/light_theme.dart';
 import 'package:golcoin_movies/core/utils/constants.dart';
+import 'package:golcoin_movies/core/di/injection_container.dart' as di;
+
 import 'package:sizer/sizer.dart';
 
 import 'freatures/home/views/pages/main_page.dart';
 
-Future<void> main() async {
+init() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await di.configure();
+}
+
+Future<void> main() async {
+  await init();
 
   runApp(EasyLocalization(
       supportedLocales: const [Locale('en')],
