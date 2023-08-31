@@ -5,8 +5,9 @@ import 'package:golcoin_movies/core/views/widgets/shimmer_placeholder.dart';
 
 class ImageView extends StatelessWidget {
   final String imageUrl;
+  final double? radius;
 
-  const ImageView({Key? key, required this.imageUrl}) : super(key: key);
+  const ImageView({Key? key, required this.imageUrl, this.radius}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,7 @@ class ImageView extends StatelessWidget {
 
   Widget imageProviderForWeb() {
     return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(12)),
+      borderRadius: BorderRadius.all(Radius.circular(radius ?? 20)),
       child: Image.network(
         imageUrl,
         fit: BoxFit.cover,
@@ -33,7 +34,7 @@ class ImageView extends StatelessWidget {
 
   Widget imageProviderForMobile(BuildContext context) {
     return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(12)),
+      borderRadius: BorderRadius.all(Radius.circular(radius ?? 20)),
       child: CachedNetworkImage(
         imageUrl: imageUrl,
         fit: BoxFit.cover,

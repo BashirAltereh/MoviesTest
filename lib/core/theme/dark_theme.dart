@@ -12,6 +12,7 @@ ThemeData _buildDarkTheme(ThemeData base) {
       color: darkColorScheme.surfaceVariant,
       thickness: 1.0,
     ),
+    cardTheme: CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
     bottomSheetTheme: const BottomSheetThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
     ),

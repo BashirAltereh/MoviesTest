@@ -4,6 +4,7 @@ import 'package:golcoin_movies/core/views/widgets/main_scaffold.dart';
 import 'package:golcoin_movies/freatures/home/views/widgets/movies/movie_item.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../movie_details/views/pages/movie_details_page.dart';
 import '../widgets/search_widget.dart';
 
 class SearchPage extends StatefulWidget {
@@ -37,8 +38,16 @@ class _SearchPageState extends State<SearchPage> {
               ),
               itemBuilder: (context, index) {
                 return MovieItem(
+                  index: index,
                   isSearch: true,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MovieDetails(
+                              movieId: index,
+                            )));
+                  },
                 );
               }),
         )

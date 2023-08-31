@@ -6,6 +6,7 @@ class Constants {
   static const kDesignSize = Size(375, 812);
 
   static const hiEmoji = '👋🏻';
+  static const heroTag = 'movie_image_';
 
 
   static const Duration connectTimeout = Duration(seconds: 60);

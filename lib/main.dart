@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
       SizerUtil.width = Constants.kDesignSize.width;
 
       return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: Constants.appName,
         theme: lightTheme(),
         darkTheme: darkTheme(),

@@ -14,6 +14,7 @@ ThemeData _buildLightTheme(ThemeData base) {
     bottomSheetTheme: const BottomSheetThemeData(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
     ),
+    cardTheme: CardTheme(shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
     typography: Typography.material2018(), colorScheme: lightColorScheme.copyWith(background: lightColorScheme.background),
   );
 }

@@ -9,6 +9,9 @@ TextTheme buildTextTheme() {
     bodyMedium: TextStyle(
       fontSize: 11.sp,
     ),
+    bodySmall: TextStyle(
+      fontSize: 10.sp,
+    ),
     displayLarge: TextStyle(
       fontSize: 24.sp,
     ),
