@@ -14,9 +14,10 @@ abstract class AppModule {
 
   @lazySingleton
   Dio get dio {
+
     final aDio = Dio(
       BaseOptions(
-        baseUrl: '',
+        baseUrl: Constants.baseUrl,
         connectTimeout: kDebugMode ? Constants.connectTimeout : Constants.prodConnectTimeout,
         receiveTimeout: kDebugMode ? Constants.receiveTimeout : Constants.prodReceiveTimeout,
         sendTimeout: kDebugMode ? Constants.sendTimeout : Constants.prodSendTimeout,
@@ -24,6 +25,7 @@ abstract class AppModule {
     );
 
     aDio.interceptors.add(AppInterceptor(aDio));
+
     if (kDebugMode) {
       aDio.interceptors.add(PrettyDioLogger(
           requestHeader: true,

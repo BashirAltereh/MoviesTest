@@ -1,13 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golcoin_movies/core/di/injection_container.dart';
 import 'package:golcoin_movies/core/views/widgets/main_scaffold.dart';
-import 'package:golcoin_movies/freatures/home/cubit/main_cubt/bottom_nav_state.dart';
-import 'package:golcoin_movies/freatures/home/views/pages/home_page.dart';
+import 'package:golcoin_movies/freatures/home/cubit/main_cubit/bottom_nav_state.dart';
 
-import '../../cubit/main_cubt/botttom_nav_cubit.dart';
+import '../../cubit/main_cubit/botttom_nav_cubit.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

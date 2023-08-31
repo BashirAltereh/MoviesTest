@@ -7,12 +7,14 @@ import 'package:golcoin_movies/freatures/movie_details/views/widgets/movie_main_
 import 'package:golcoin_movies/freatures/movie_details/views/widgets/summary_widget.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../home/models/movies_list_model.dart';
 import '../widgets/cast_widget.dart';
 
 class MovieDetails extends StatefulWidget {
-  const MovieDetails({super.key, required this.movieId});
+  const MovieDetails({super.key, required this.index, required this.movieDataItem});
 
-  final num movieId;
+  final int index;
+  final MovieDataItem? movieDataItem;
 
   @override
   State<MovieDetails> createState() => _MovieDetailsState();
@@ -35,7 +37,7 @@ class _MovieDetailsState extends State<MovieDetails> {
             SizedBox(
               height: 4.h,
             ),
-            MovieMainDetails(movieId: widget.movieId),
+            MovieMainDetails(index: widget.index,movieDataItem: widget.movieDataItem),
             _titleWidget(),
             Padding(
               padding: EdgeInsetsDirectional.only(top: 1.h, bottom: 2.h, start: 7.w, end: 4.w),
@@ -59,9 +61,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                 ],
               ),
             ),
-            SummaryWidget(
-                summary:
-                    'Test test test test test test testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testtest testv test testtest testtest testtest testtest testtest testtest test'),
+            SummaryWidget(summary: widget.movieDataItem?.overview ?? ''),
             CastWidget()
           ],
         ));
@@ -70,7 +70,7 @@ class _MovieDetailsState extends State<MovieDetails> {
   Widget _titleWidget() {
     return Padding(
       padding: EdgeInsets.symmetric(vertical: 2.h, horizontal: 8.w),
-      child: Text('avatar: the movie',
+      child: Text(widget.movieDataItem?.title ?? '',
           style: Theme.of(context)
               .textTheme
               .displaySmall

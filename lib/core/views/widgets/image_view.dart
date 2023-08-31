@@ -39,12 +39,14 @@ class ImageView extends StatelessWidget {
         imageUrl: imageUrl,
         fit: BoxFit.cover,
         placeholder: (context, url) => CustomShimmer.squarer(),
-        errorWidget: (context, url, error) => errorPlaceholder(),
+        errorWidget: (context, url, error) => errorPlaceholder(context),
       ),
     );
   }
 
-  Widget errorPlaceholder() {
-    return const SizedBox();
+  Widget errorPlaceholder(BuildContext context) {
+    return Container(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        child: Icon(Icons.movie_creation,color: Theme.of(context).colorScheme.primary,size: 75,));
   }
 }

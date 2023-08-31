@@ -39,13 +39,15 @@ class _SearchPageState extends State<SearchPage> {
               itemBuilder: (context, index) {
                 return MovieItem(
                   index: index,
+movieDataItem: null,
                   isSearch: true,
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
                             builder: (context) => MovieDetails(
-                              movieId: index,
+                              index: index,
+                              movieDataItem: null,
                             )));
                   },
                 );

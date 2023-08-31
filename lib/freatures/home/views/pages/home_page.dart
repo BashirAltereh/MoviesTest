@@ -4,6 +4,7 @@ import 'package:golcoin_movies/core/views/widgets/main_scaffold.dart';
 import 'package:golcoin_movies/freatures/home/views/widgets/movies/movies_list.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../core/utils/enums.dart';
 import '../widgets/categories/categories_list.dart';
 import '../widgets/welcome_widget.dart';
 
@@ -31,11 +32,14 @@ class _HomePageState extends State<HomePage> {
           SizedBox(
             height: 2.h,
           ),
-          MoviesList(title: 'trending_movies'.tr()),
+          MoviesList(title: 'trending_movies'.tr(), requestType: RequestType.popular),
           SizedBox(
             height: 1.h,
           ),
-          MoviesList(title: 'upcoming_movies'.tr())
+          MoviesList(
+            title: 'upcoming_movies'.tr(),
+            requestType: RequestType.upcoming,
+          )
         ],
       ),
     );
