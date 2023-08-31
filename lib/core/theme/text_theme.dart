@@ -7,7 +7,7 @@ TextTheme buildTextTheme() {
       fontSize: 12.sp,
     ),
     bodyMedium: TextStyle(
-      fontSize: 10.sp,
+      fontSize: 11.sp,
     ),
     displayLarge: TextStyle(
       fontSize: 24.sp,
@@ -25,10 +25,10 @@ TextTheme buildTextTheme() {
       fontSize: 13.sp,
     ),
     titleLarge: TextStyle(
-      fontSize: 11.sp,
+      fontSize: 15.sp,
     ),
     titleMedium: TextStyle(
-      fontSize: 11.sp,
+      fontSize: 12.sp,
     ),
     titleSmall: TextStyle(
       fontSize: 10.sp,

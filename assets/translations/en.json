@@ -1,3 +1,12 @@
 {
-  "msg_not_internet": "No internet connection"
+  "msg_not_internet": "No internet connection",
+  "home": "Home",
+  "explore": "Explore",
+  "saved": "Saved",
+  "welcome": "Welcome",
+  "intro_text": "Bring popcorn, it's a movie time.",
+  "category": "Category",
+  "trending_movies": "Trending Movies",
+  "upcoming_movies": "Upcoming Movies",
+  "see_all": "See All"
 }

@@ -5,4 +5,6 @@ class Constants {
 
   static const kDesignSize = Size(375, 812);
 
+  static const hiEmoji = '👋🏻';
+
 }
