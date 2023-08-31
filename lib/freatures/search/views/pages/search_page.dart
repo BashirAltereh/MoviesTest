@@ -23,11 +23,12 @@ class _SearchPageState extends State<SearchPage> {
           height: 3.h,
         ),
         const SearchWidget(),
+        SizedBox(height: 1.h),
         Expanded(
           child: GridView.builder(
               itemCount: 20,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 2.w),
+              padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 2.w),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   mainAxisSpacing: 0.0,

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golcoin_movies/freatures/home/views/pages/home_page.dart';
+import 'package:golcoin_movies/freatures/saved/views/pages/tabs_page.dart';
 import 'package:golcoin_movies/freatures/search/views/pages/search_page.dart';
 import 'package:injectable/injectable.dart';
 
@@ -17,7 +18,7 @@ class BottomNavCubit extends Cubit<BottomNavState> {
   List<Widget> pages = const [
     HomePage(),
     SearchPage(),
-    SearchPage(),
+    SavedTabsPage(),
   ];
 
   List<BottomNavigationBarItem> navItems = [

@@ -8,5 +8,8 @@
   "category": "Category",
   "trending_movies": "Trending Movies",
   "upcoming_movies": "Upcoming Movies",
-  "see_all": "See All"
+  "see_all": "See All",
+  "favorite_movies": "Favorite Movies",
+  "watching_list": "Watching List",
+  "delete": "Remove From Favorite"
 }
