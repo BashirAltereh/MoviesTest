@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golcoin_movies/core/di/injection_container.dart';
 import 'package:golcoin_movies/core/views/widgets/main_scaffold.dart';
 import 'package:golcoin_movies/core/views/widgets/switch_theme_widget.dart';
@@ -8,6 +9,7 @@ import 'package:sizer/sizer.dart';
 
 import '../../../../core/utils/enums.dart';
 import '../../cubit/categories_cubit/categories_cubit.dart';
+import '../../cubit/categories_cubit/categories_state.dart';
 import '../../cubit/movies_cubit/movies_cubit.dart';
 import '../widgets/categories/categories_list.dart';
 import '../widgets/welcome_widget.dart';
@@ -31,16 +33,16 @@ class _HomePageState extends State<HomePage> {
     _categoriesCubit = getIt<CategoriesCubit>();
   }
 
-  void _refreshData(){
+  void _refreshData() {
     _categoriesCubit.getCategories();
     try {
       _moviesCubit.moviesController?[RequestType.popular]?.refresh();
-    }catch(e){
+    } catch (e) {
       debugPrint('onRefresh: error-> $e');
     }
     try {
       _moviesCubit.moviesController?[RequestType.upcoming]?.refresh();
-    }catch(e){
+    } catch (e) {
       debugPrint('onRefresh: error-> $e');
     }
   }

@@ -30,7 +30,7 @@ class _MovieDetailsState extends State<MovieDetails> {
           title: Text('movie_details'.tr(),
               style: Theme.of(context)
                   .textTheme
-                  .bodyMedium
+                  .titleMedium
                   ?.copyWith(color: Theme.of(context).colorScheme.primaryContainer, fontWeight: FontWeight.w500)),
         ),
         body: ListView(
