@@ -43,9 +43,9 @@ class _FavoritePageState extends State<FavoritePage> {
               loaded: (result) {
                 if (result?.isEmpty ?? true) {
                   return Center(
-                    child: Text('no_favorite_movies'.tr(),
-                        style: Theme.of(context).textTheme.displayLarge?.copyWith(fontWeight: FontWeight.w500)),
-                  );
+                      child: Text('no_favorite_movies'.tr(),
+                          style: Theme.of(context).textTheme.displayLarge?.copyWith(
+                              fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.primaryContainer)));
                 }
                 return ListView.builder(
                     itemCount: result?.length ?? 0,

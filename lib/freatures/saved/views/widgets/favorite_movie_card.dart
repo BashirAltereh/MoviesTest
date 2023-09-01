@@ -76,11 +76,15 @@ class FavoriteMovieCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text(movieDataItem?.title ?? '',
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineMedium
-                    ?.copyWith(color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.w500)),
+            Text(
+              movieDataItem?.title ?? '',
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineMedium
+                  ?.copyWith(color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.w500),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
             SizedBox(
               height: 1.h,
             ),

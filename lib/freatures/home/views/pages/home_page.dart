@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:golcoin_movies/core/di/injection_container.dart';
 import 'package:golcoin_movies/core/views/widgets/main_scaffold.dart';
+import 'package:golcoin_movies/core/views/widgets/switch_theme_widget.dart';
 import 'package:golcoin_movies/freatures/home/views/widgets/movies/movies_list.dart';
 import 'package:sizer/sizer.dart';
 
@@ -55,7 +56,11 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           children: [
             SizedBox(
-              height: 6.h,
+              height: 1.h,
+            ),
+            const SwitchThemeWidget(),
+            SizedBox(
+              height: 1.h,
             ),
             const WelcomeWidget(),
             SizedBox(

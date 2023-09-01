@@ -18,5 +18,7 @@
   "plot_summary": "Plot Summary",
   "cast": "Cast",
   "no_movies": "No Movies",
-  "no_favorite_movies": "No Favorite Movies"
+  "no_favorite_movies": "No Favorite Movies",
+  "set_dark_theme": "Set Dark Theme",
+  "set_light_theme": "Set Light Theme"
 }

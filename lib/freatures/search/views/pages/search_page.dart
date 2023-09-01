@@ -57,84 +57,93 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return MainScaffold(
-        body: Column(
-      children: [
+      body: Column(
+        children: [
         SizedBox(
-          height: 3.h,
-        ),
-        SearchWidget(onChanged: (value) {
-          if (_debounce?.isActive ?? false) _debounce?.cancel();
-          _debounce = Timer(const Duration(milliseconds: 500), () {
-            _searchCubit.query = value ?? '';
+        height: 3.h,
+      ),
+      SearchWidget(onChanged: (value) {
+        if (_debounce?.isActive ?? false) _debounce?.cancel();
+        _debounce = Timer(const Duration(milliseconds: 500), () {
+          _searchCubit.query = value ?? '';
+          _searchCubit.moviesController?.refresh();
+        });
+      }),
+      SizedBox(height: 1.h),
+      Expanded(
+        child: RefreshIndicator(
+          onRefresh: () {
             _searchCubit.moviesController?.refresh();
-          });
-        }),
-        SizedBox(height: 1.h),
-        Expanded(
-          child: RefreshIndicator(
-            onRefresh: () {
-              _searchCubit.moviesController?.refresh();
-              return Future.delayed(const Duration(seconds: 1));
-            },
-            child: PagedGridView<int, MovieDataItem?>(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 2.w),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisSpacing: 0.0,
-                crossAxisSpacing: 0.0,
-                mainAxisExtent: 275,
-              ),
-              pagingController: _searchCubit.moviesController!,
-              builderDelegate: PagedChildBuilderDelegate<MovieDataItem?>(
+            return Future.delayed(const Duration(seconds: 1));
+          },
+          child: PagedGridView<int, MovieDataItem?>(
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 2.w),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 0.0,
+              crossAxisSpacing: 0.0,
+              mainAxisExtent: 275,
+            ),
+            pagingController: _searchCubit.moviesController!,
+            builderDelegate: PagedChildBuilderDelegate<MovieDataItem?>(
                 animateTransitions: false,
                 firstPageProgressIndicatorBuilder: (_) => const Center(child: LoaderWidget()),
-                newPageProgressIndicatorBuilder: (_) => const Center(
+                newPageProgressIndicatorBuilder: (_) =>
+                const Center(
                   child: LoaderWidget(),
                 ),
                 noMoreItemsIndicatorBuilder: (_) => const SizedBox.shrink(),
-                noItemsFoundIndicatorBuilder: (_) => Center(
-                    child: Text('no_movies'.tr(),
-                        style: Theme.of(context).textTheme.displayLarge?.copyWith(fontWeight: FontWeight.w500))),
-                itemBuilder: (context, item, index) {
+                noItemsFoundIndicatorBuilder: (_) =>
+                    Center(
+                        child: Text('no_movies'.tr(),
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .displayLarge
+                                ?.copyWith(fontWeight: FontWeight.w500, color: Theme
+                                .of(context)
+                                .colorScheme
+                                .primaryContainer))),
+            itemBuilder: (context, item, index) {
+              return BlocBuilder<FavoritesCubit, FavoritesState>(
+                  bloc: _favoritesCubit,
+                  builder: (context, state) {
+                    bool isFavorite = _favoritesCubit.isFavoriteMovie(item?.id ?? 0);
 
-                  return BlocBuilder<FavoritesCubit,FavoritesState>(
-                    bloc: _favoritesCubit,
-                    builder: (context, state) {
-                      bool isFavorite = _favoritesCubit.isFavoriteMovie(item?.id ?? 0);
-
-                      return MovieItem(
-                        index: index,
-                        movieDataItem: item,
-                        isSearch: true,
-                        isFavorite: isFavorite,
-                        onFavoritePressed: () {
-                          if (isFavorite) {
-                            _favoritesCubit.removeMovieFromFavorite(item?.id ?? 0);
-                          } else {
-                            if (item != null) {
-                              _favoritesCubit.addMovieToFavorite(item);
-                            }
+                    return MovieItem(
+                      index: index,
+                      movieDataItem: item,
+                      isSearch: true,
+                      isFavorite: isFavorite,
+                      onFavoritePressed: () {
+                        if (isFavorite) {
+                          _favoritesCubit.removeMovieFromFavorite(item?.id ?? 0);
+                        } else {
+                          if (item != null) {
+                            _favoritesCubit.addMovieToFavorite(item);
                           }
-                        },
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MovieDetails(
-                                        index: index,
-                                        movieDataItem: item,
-                                      )));
-                        },
-                      );
-                    }
-                  );
-                },
-              ),
-            ),
+                        }
+                      },
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    MovieDetails(
+                                      index: index,
+                                      movieDataItem: item,
+                                    )));
+                      },
+                    );
+                  }
+              );
+            },
           ),
-        )
-      ],
-    ));
+        ),
+      ),
+    )],
+    )
+    );
   }
 }
