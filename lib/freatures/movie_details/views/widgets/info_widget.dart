@@ -34,7 +34,7 @@ class InfoWidget extends StatelessWidget {
                   height: 2,
                 ),
                 Text(title,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.primaryContainer),
                     overflow: TextOverflow.ellipsis),
                 const SizedBox(
                   height: 2,

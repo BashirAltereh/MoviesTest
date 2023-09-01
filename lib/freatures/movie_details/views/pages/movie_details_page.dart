@@ -8,7 +8,7 @@ import 'package:golcoin_movies/freatures/movie_details/views/widgets/summary_wid
 import 'package:sizer/sizer.dart';
 
 import '../../../../core/views/widgets/animation_scale_widget.dart';
-import '../../../home/models/movies_list_model.dart';
+import '../../../home/models/movie_data_item.dart';
 import '../widgets/cast_widget.dart';
 
 class MovieDetails extends StatefulWidget {
@@ -51,7 +51,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                         icon: CupertinoIcons.play_circle_fill,
                         onPressed: () {},
                         child: Text('watch_trailer'.tr(),
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500))),
+                            style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.primaryContainer))),
                   ),
                   SizedBox(
                     width: 4.w,
@@ -64,7 +64,7 @@ class _MovieDetailsState extends State<MovieDetails> {
                           icon: Icons.sticky_note_2_outlined,
                           onPressed: () {},
                           child: Text('add_to_my_watching_list'.tr(),
-                              style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500))),
+                              style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.primaryContainer))),
                     ),
                   ),
                 ],

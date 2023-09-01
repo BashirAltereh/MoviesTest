@@ -3,11 +3,14 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:golcoin_movies/core/di/injection_container.dart';
 import 'package:golcoin_movies/core/views/widgets/loader_widget.dart';
 import 'package:golcoin_movies/core/views/widgets/main_scaffold.dart';
-import 'package:golcoin_movies/freatures/home/models/movies_list_model.dart';
+import 'package:golcoin_movies/freatures/home/models/movie_data_item.dart';
 import 'package:golcoin_movies/freatures/home/views/widgets/movies/movie_item.dart';
+import 'package:golcoin_movies/freatures/saved/cubit/favorites_cubit.dart';
+import 'package:golcoin_movies/freatures/saved/cubit/favorites_state.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:sizer/sizer.dart';
 
@@ -24,6 +27,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   late SearchCubit _searchCubit;
+  late FavoritesCubit _favoritesCubit;
 
   Timer? _debounce;
 
@@ -32,6 +36,8 @@ class _SearchPageState extends State<SearchPage> {
     // TODO: implement initState
     super.initState();
     _searchCubit = getIt<SearchCubit>();
+    _favoritesCubit = getIt<FavoritesCubit>();
+
     _getData();
   }
 
@@ -91,19 +97,37 @@ class _SearchPageState extends State<SearchPage> {
                     child: Text('no_movies'.tr(),
                         style: Theme.of(context).textTheme.displayLarge?.copyWith(fontWeight: FontWeight.w500))),
                 itemBuilder: (context, item, index) {
-                  return MovieItem(
-                    index: index,
-                    movieDataItem: item,
-                    isSearch: true,
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MovieDetails(
-                                    index: index,
-                                    movieDataItem: item,
-                                  )));
-                    },
+
+                  return BlocBuilder<FavoritesCubit,FavoritesState>(
+                    bloc: _favoritesCubit,
+                    builder: (context, state) {
+                      bool isFavorite = _favoritesCubit.isFavoriteMovie(item?.id ?? 0);
+
+                      return MovieItem(
+                        index: index,
+                        movieDataItem: item,
+                        isSearch: true,
+                        isFavorite: isFavorite,
+                        onFavoritePressed: () {
+                          if (isFavorite) {
+                            _favoritesCubit.removeMovieFromFavorite(item?.id ?? 0);
+                          } else {
+                            if (item != null) {
+                              _favoritesCubit.addMovieToFavorite(item);
+                            }
+                          }
+                        },
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MovieDetails(
+                                        index: index,
+                                        movieDataItem: item,
+                                      )));
+                        },
+                      );
+                    }
                   );
                 },
               ),

@@ -2,17 +2,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:golcoin_movies/core/utils/constants.dart';
 import 'package:golcoin_movies/core/views/widgets/image_view.dart';
-import 'package:golcoin_movies/freatures/home/models/movies_list_model.dart';
+import 'package:golcoin_movies/freatures/home/models/movie_data_item.dart';
 import 'package:sizer/sizer.dart';
 
 class MovieItem extends StatelessWidget {
-  const MovieItem({super.key, required this.index,required this.movieDataItem, this.onPressed, this.isSearch = false});
+  const MovieItem(
+      {super.key,
+      required this.index,
+      required this.movieDataItem,
+      this.onPressed,
+      this.onFavoritePressed,
+      this.isSearch = false,
+      this.isFavorite = false});
 
-  final VoidCallback? onPressed;
+  final VoidCallback? onPressed,onFavoritePressed;
   final bool isSearch;
   final int index;
+  final bool isFavorite;
   final MovieDataItem? movieDataItem;
-
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +41,18 @@ class MovieItem extends StatelessWidget {
                     SizedBox(
                       height: isSearch ? 26.h : 22.h,
                       width: isSearch ? 42.w : 35.w,
-                      child: ImageView(
-                          imageUrl: '${Constants.imageUrl}${movieDataItem?.posterPath ?? ''}'),
+                      child: ImageView(imageUrl: '${Constants.imageUrl}${movieDataItem?.posterPath ?? ''}'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.favorite_sharp,
-                        color: Theme.of(context).colorScheme.error,
-                        size: isSearch ? 35 : null,
+                      padding: const EdgeInsets.symmetric(vertical: 2,horizontal: 4),
+                      child: CupertinoButton(
+                        onPressed: onFavoritePressed,
+                        padding: EdgeInsets.zero,
+                        child: Icon(
+                          isFavorite ? Icons.favorite_sharp : Icons.favorite_outline_sharp,
+                          color: Theme.of(context).colorScheme.error,
+                          size: isSearch ? 35 : 30,
+                        ),
                       ),
                     )
                   ],
@@ -56,10 +66,10 @@ class MovieItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(movieDataItem?.title ?? '',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontSize: 11.sp, fontWeight: FontWeight.w500),
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              fontSize: 11.sp,
+                              fontWeight: FontWeight.w500,
+                              color: Theme.of(context).colorScheme.primaryContainer),
                           overflow: TextOverflow.ellipsis),
                       Text('${movieDataItem?.voteAverage ?? ''} . Action',
                           style: Theme.of(context)

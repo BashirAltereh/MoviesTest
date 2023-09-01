@@ -4,6 +4,7 @@ import 'package:golcoin_movies/core/theme/dark_theme.dart';
 import 'package:golcoin_movies/core/theme/light_theme.dart';
 import 'package:golcoin_movies/core/utils/constants.dart';
 import 'package:golcoin_movies/core/di/injection_container.dart' as di;
+import 'package:golcoin_movies/core/utils/data_store.dart';
 
 import 'package:sizer/sizer.dart';
 
@@ -12,6 +13,8 @@ import 'freatures/home/views/pages/main_page.dart';
 init() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  await dataStore.openBox();
+
   await di.configure();
 }
 

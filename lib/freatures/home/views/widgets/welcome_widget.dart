@@ -28,7 +28,7 @@ class WelcomeWidget extends StatelessWidget {
                   height: 4,
                 ),
                 Text('intro_text'.tr(),
-                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w500)),
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.primaryContainer)),
               ],
             ),
           ),

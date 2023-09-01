@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:golcoin_movies/core/utils/enums.dart';
 import 'package:golcoin_movies/freatures/home/cubit/movies_cubit/movies_state.dart';
+import 'package:golcoin_movies/freatures/home/models/movie_data_item.dart';
 import 'package:golcoin_movies/freatures/home/models/movies_list_model.dart';
 import 'package:golcoin_movies/freatures/home/repositories/home_repository.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';

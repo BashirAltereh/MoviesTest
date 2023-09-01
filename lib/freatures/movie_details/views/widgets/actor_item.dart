@@ -25,7 +25,7 @@ class ActorItem extends StatelessWidget {
           ),
           Text(
             cast?.name ?? '',
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500),
+            style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w500,color: Theme.of(context).colorScheme.primaryContainer),
           )
         ],
       ),
