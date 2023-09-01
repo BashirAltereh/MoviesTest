@@ -24,19 +24,19 @@ class CategoryItem extends StatelessWidget {
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               color: Theme.of(context).colorScheme.secondary.withOpacity(0.5),
               child: SizedBox(
-                height: 8.h,
-                width: 8.h,
+                height: 9.h,
+                width: 9.h,
                 child: Center(
                     child: Text(
                   emoji,
-                  style: Theme.of(context).textTheme.titleLarge,
+                  style: Theme.of(context).textTheme.displayMedium,
                 )),
               ),
             ),
             SizedBox(
-              width: 8.h,
+              width: 9.h,
               child: Padding(
-                padding: EdgeInsetsDirectional.only(top: 1.h, start: 2.w),
+                padding: EdgeInsetsDirectional.only(top: 0.5.h, start: 1.w),
                 child: Text(title,
                     style: Theme.of(context)
                         .textTheme

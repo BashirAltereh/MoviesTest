@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:sizer/sizer.dart';
 
 class SearchWidget extends StatelessWidget {
-  const SearchWidget({super.key});
+  const SearchWidget({super.key,required this.onChanged});
+
+  final Function(String?) onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class SearchWidget extends StatelessWidget {
                   .colorScheme
                   .primary)
           ),
+          onChanged: onChanged,
           style: Theme
               .of(context)
               .textTheme

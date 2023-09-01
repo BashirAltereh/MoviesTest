@@ -9,4 +9,10 @@ class CategoriesCubit extends Cubit<CategoriesState> {
   final HomeRepository _homeRepository;
 
   CategoriesCubit(this._homeRepository) : super(const CategoriesState.initial());
+
+  getCategories() async {
+    emit(const CategoriesState.loading());
+    (await _homeRepository.getCategories())
+        .fold((l) => emit(CategoriesState.error(l)), (r) => emit(CategoriesState.loaded(r)));
+  }
 }

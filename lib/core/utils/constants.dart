@@ -13,10 +13,32 @@ class Constants {
   static const heroTag = 'movie_image_';
 
 
-  static const Duration connectTimeout = Duration(seconds: 60);
-  static const Duration receiveTimeout = Duration(seconds: 60);
-  static const Duration sendTimeout = Duration(seconds: 60);
-  static const Duration prodConnectTimeout = Duration(seconds: 20);
-  static const Duration prodReceiveTimeout = Duration(seconds: 20);
-  static const Duration prodSendTimeout = Duration(seconds: 20);
+  static const categoryEmojis = {
+    'Action': '🔥',
+    'Adventure': '🦹',
+    'Animation': '🐴',
+    'Comedy': '🤣',
+    'Crime': '🪖',
+    'Documentary': hiEmoji,
+    'Drama': hiEmoji,
+    'Family': hiEmoji,
+    'Fantasy': hiEmoji,
+    'History': hiEmoji,
+    'Horror': '🔥',
+    'Music': '🎶',
+    'Mystery': hiEmoji,
+    'Romance': '🥰',
+    'Science Fiction': hiEmoji,
+    'TV Movie': '📽️',
+    'Thriller': hiEmoji,
+    'War': hiEmoji,
+    'Western': hiEmoji,
+  };
+
+  static const Duration connectTimeout = Duration(seconds: 10);
+  static const Duration receiveTimeout = Duration(seconds: 10);
+  static const Duration sendTimeout = Duration(seconds: 10);
+  static const Duration prodConnectTimeout = Duration(seconds: 15);
+  static const Duration prodReceiveTimeout = Duration(seconds: 15);
+  static const Duration prodSendTimeout = Duration(seconds: 15);
 }
