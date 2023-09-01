@@ -26,24 +26,34 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BottomNavCubit, BottomNavState>(
-        bloc: _bottomNavCubit,
-        builder: (context, state) {
-          return MainScaffold(
-            body: _bottomNavCubit.pages[_bottomNavCubit.selectedPageIndex],
-            bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: Theme.of(context).colorScheme.onSurfaceVariant,
-              items: _bottomNavCubit.navItems,
-              elevation: 0,
-              onTap: (index) {
-                _bottomNavCubit.updatePageIndex(index);
-              },
-              type: BottomNavigationBarType.shifting,
-              currentIndex: _bottomNavCubit.selectedPageIndex,
-              selectedItemColor: Theme.of(context).colorScheme.primary,
-              unselectedItemColor: Theme.of(context).colorScheme.secondary,
-            ),
-          );
-        });
+    return WillPopScope(
+      onWillPop: () async{
+        if(_bottomNavCubit.selectedPageIndex == 0){
+          return true;
+        }
+
+        _bottomNavCubit.updatePageIndex(0);
+        return false;
+      },
+      child: BlocBuilder<BottomNavCubit, BottomNavState>(
+          bloc: _bottomNavCubit,
+          builder: (context, state) {
+            return MainScaffold(
+              body: _bottomNavCubit.pages[_bottomNavCubit.selectedPageIndex],
+              bottomNavigationBar: BottomNavigationBar(
+                backgroundColor: Theme.of(context).colorScheme.onSurfaceVariant,
+                items: _bottomNavCubit.navItems,
+                elevation: 0,
+                onTap: (index) {
+                  _bottomNavCubit.updatePageIndex(index);
+                },
+                type: BottomNavigationBarType.shifting,
+                currentIndex: _bottomNavCubit.selectedPageIndex,
+                selectedItemColor: Theme.of(context).colorScheme.primary,
+                unselectedItemColor: Theme.of(context).colorScheme.secondary,
+              ),
+            );
+          }),
+    );
   }
 }

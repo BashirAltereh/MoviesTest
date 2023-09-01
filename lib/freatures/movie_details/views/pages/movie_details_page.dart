@@ -7,6 +7,7 @@ import 'package:golcoin_movies/freatures/movie_details/views/widgets/movie_main_
 import 'package:golcoin_movies/freatures/movie_details/views/widgets/summary_widget.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../../../core/views/widgets/animation_scale_widget.dart';
 import '../../../home/models/movies_list_model.dart';
 import '../widgets/cast_widget.dart';
 
@@ -43,26 +44,34 @@ class _MovieDetailsState extends State<MovieDetails> {
               padding: EdgeInsetsDirectional.only(top: 1.h, bottom: 2.h, start: 7.w, end: 4.w),
               child: Row(
                 children: [
-                  OutlineButton(
-                      icon: CupertinoIcons.play_circle_fill,
-                      onPressed: () {},
-                      child: Text('watch_trailer'.tr(),
-                          style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500))),
+                  AnimationScaleWidget(
+                    horizontalOffset: -50,
+                    verticalOffset: 0,
+                    child: OutlineButton(
+                        icon: CupertinoIcons.play_circle_fill,
+                        onPressed: () {},
+                        child: Text('watch_trailer'.tr(),
+                            style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500))),
+                  ),
                   SizedBox(
                     width: 4.w,
                   ),
                   Expanded(
-                    child: OutlineButton(
-                        icon: Icons.sticky_note_2_outlined,
-                        onPressed: () {},
-                        child: Text('add_to_my_watching_list'.tr(),
-                            style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500))),
+                    child: AnimationScaleWidget(
+                      horizontalOffset: 50,
+                      verticalOffset: 0,
+                      child: OutlineButton(
+                          icon: Icons.sticky_note_2_outlined,
+                          onPressed: () {},
+                          child: Text('add_to_my_watching_list'.tr(),
+                              style: Theme.of(context).textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w500))),
+                    ),
                   ),
                 ],
               ),
             ),
             SummaryWidget(summary: widget.movieDataItem?.overview ?? ''),
-            CastWidget()
+            CastWidget(movieId: widget.movieDataItem?.id)
           ],
         ));
   }
@@ -75,6 +84,7 @@ class _MovieDetailsState extends State<MovieDetails> {
               .textTheme
               .displaySmall
               ?.copyWith(fontWeight: FontWeight.w500, color: Theme.of(context).colorScheme.primaryContainer),
+          maxLines: 3,
           overflow: TextOverflow.ellipsis),
     );
   }
